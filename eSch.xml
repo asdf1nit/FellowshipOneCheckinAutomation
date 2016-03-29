@@ -3,23 +3,23 @@
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~The Ark Church Checkin Schedule~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	The format of services times should just be in the military hour that corresponds. Minute is not used -eg 8:30 is 8, 5:45pm is 17
-	The tag: Station= is the FULL computer name... Eg: 101CHECKIN, REDCHECKIN01.
+	The Attribute: Station= is the FULL computer name... Eg: 101CHECKIN, REDCHECKIN01.
 	Any future computers or days can just be added using the same structure.
 	Not All Computers have to be in a given day or time. Eg: Wednesday Hour="17" service is only valid for Life Groups
 	If a computer doesn't have an activity leave it empty. The Program will handle it. !!!!! A partial CODE will probably cause a problem!!!!!!!!
-	Friday  7378
+	All coments should be placed in this section as of version 1.0.0.11 there is an application error if a comment is nested in the XML
 -->
 <Checkin>
 	<Service Day="Sunday">
 		<Time Hour="07">
 		
 			<Computer Station="101CHECKIN">
-				<Code>7168</Code>
+				<Code>1223</Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="211HALLCHECKIN">
-				<Code>1668</Code>
+				<Code>1324</Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
@@ -34,461 +34,461 @@
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="LOFTCHECKIN01">
-				<Code>1668</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>1668</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>1668</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="NRTHLOBBYCHKN1">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY02">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY03">
-				<Code>8828</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY04">
-				<Code>8828</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="AYCBLACKKIOSK">
-				<Code>7168</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="AYCCHECKIN01">
-				<Code>7168</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="NUSERY01">
-				<Code>6898</Code>
+				<Code></Code>
 				<Mode></Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY02">
-				<Code>6898</Code>
+				<Code></Code>
 				<Mode></Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY03">
-				<Code>6898</Code>
+				<Code></Code>
 				<Mode></Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY04">
-				<Code>6898</Code>
+				<Code></Code>
 				<Mode></Mode>
 			</Computer>
 				
 			<Computer Station="PRESCHOOL01">
-				<Code>1688</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL02">
-				<Code>1688</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL03">
-				<Code>1688</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL04">
-				<Code>1688</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="REDCHECKIN01">
-				<Code>8828</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN02">
-				<Code>8828</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN03">
-				<Code>8828</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY03">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY04">
-				<Code>5498</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 		</Time>
 		<Time Hour="09">
 			<Computer Station="101CHECKIN">
-				<Code>2768</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="211HALLCHECKIN">
-				<Code>4689</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESS01">
-				<Code>9909</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESSCHECKIN02">
-				<Code>9909</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="LOFTCHECKIN01">
-				<Code>4689</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>4689</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>4689</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="NRTHLOBBYCHKN1">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY02">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY03">
-				<Code>8519</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY04">
-				<Code>8519</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="AYCBLACKKIOSK">
-				<Code>2768</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="AYCCHECKIN01">
-				<Code>2768</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="NUSERY01">
-				<Code>7528</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY02">
-				<Code>7528</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY03">
-				<Code>7528</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NUSERY04">
-				<Code>7528</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="PRESCHOOL01">
-				<Code>7969</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL02">
-				<Code>7969</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL03">
-				<Code>7969</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL04">
-				<Code>7969</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="REDCHECKIN01">
-				<Code>8519</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN02">
-				<Code>8519</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN03">
-				<Code>8519</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY03">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY04">
-				<Code>9068</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 		</Time>
 		<Time Hour="10">
 		
 			<Computer Station="101CHECKIN">
-				<Code>1398</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="211HALLCHECKIN">
-				<Code>1079</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESS01">
-				<Code>6889</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESSCHECKIN02">
-				<Code>6889</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="LOFTCHECKIN01">
-				<Code>1079</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>1079</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>1079</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="NRTHLOBBYCHKN1">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY02">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY03">
-				<Code>8608</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY04">
-				<Code>8608</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="AYCBLACKKIOSK">
-				<Code>1398</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="AYCCHECKIN01">
-				<Code>1398</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="NURSERY01">
-				<Code>4849</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY02">
-				<Code>4849</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY03">
-				<Code>4849</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY04">
-				<Code>4849</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="PRESCHOOL01">
-				<Code>9119</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL02">
-				<Code>9119</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL03">
-				<Code>9119</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL04">
-				<Code>9119</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="REDCHECKIN01">
-				<Code>8608</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN02">
-				<Code>8608</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN03">
-				<Code>8608</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY03">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY04">
-				<Code>5138</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 		</Time>
 	</Service>
 	<Service Day="Wednesday">
-		<Time Hour="17"> <!-- For Life Groups computers that need to be setup at 5:30   -->
+		<Time Hour="17">
 		
 			<Computer Station="211HALLCHECKIN">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN01">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 		
@@ -496,57 +496,57 @@
 		<Time Hour="18">
 		
 			<Computer Station="101CHECKIN">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="211HALLCHECKIN">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESS01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESSCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="LOFTCHECKIN01">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="NRTHLOBBYCHKN1">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY02">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
@@ -561,88 +561,87 @@
 			</Computer>
 				
 			<Computer Station="AYCBLACKKIOSK">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="AYCCHECKIN01">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="NURSERY01">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY02">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY03">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY04">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="PRESCHOOL01">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL02">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL03">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL04">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="REDCHECKIN01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN03">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
-			<!-- SOUTHKIOSK01 is moved to The Loft for AK Check-in --> 
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
-			<!-- SOUTHLOBBY02 & SOUTHLOBBY03 are moved to Blue Hallway for Adult Ministry Check-in during the Semesters -->
+			
 			<Computer Station="SOUTHLOBBY03">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY04">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 		</Time>
@@ -651,57 +650,57 @@
 		<Time Hour="08">
 		
 			<Computer Station="101CHECKIN">
-				<Code>1479</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="211HALLCHECKIN">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESS01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="ACCESSCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="LOFTCHECKIN01">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="LOFTCHECKIN03">
-				<Code>3839</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="NRTHLOBBYCHKN1">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NORTHLOBBY02">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
@@ -716,88 +715,87 @@
 			</Computer>
 				
 			<Computer Station="AYCBLACKKIOSK">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="AYCCHECKIN01">
-				<Code>4968</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="NURSERY01">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY02">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY03">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="NURSERY04">
-				<Code>1389</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 				
 			<Computer Station="PRESCHOOL01">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL02">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL03">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="PRESCHOOL04">
-				<Code>7298</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 				
 			<Computer Station="REDCHECKIN01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN02">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="REDCHECKIN03">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>4208</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
-			<!-- SOUTHKIOSK01 is moved to The Loft for AK Check-in --> 
-			
+
 			<Computer Station="SOUTHLOBBY02">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
-			<!-- SOUTHLOBBY02 & SOUTHLOBBY03 are moved to Blue Hallway for Adult Ministry Check-in during the Semesters -->
+
 			<Computer Station="SOUTHLOBBY03">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY04">
-				<Code>1209</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 		</Time>
@@ -805,22 +803,22 @@
 		<Time Hour="17">
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
@@ -831,22 +829,22 @@
 		<Time Hour="18">
 			
 			<Computer Station="SOUTHKIOSK01">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="SOUTHLOBBY02">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY01">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Self</Mode>
 			</Computer>
 			
 			<Computer Station="MAINLOBBY02">
-				<Code>7378</Code>
+				<Code></Code>
 				<Mode>Assisted</Mode>
 			</Computer>
 			
