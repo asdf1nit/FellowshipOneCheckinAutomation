@@ -1,13 +1,15 @@
+; *** Start added by AutoIt3Wrapper ***
+#include <MsgBoxConstants.au3>
+; *** End added by AutoIt3Wrapper ***
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Version=Beta
 #AutoIt3Wrapper_Res_Comment=Fellowship One Check- in Automation
 #AutoIt3Wrapper_Res_Description=This program automates Fellowship One Check-in setup with command line input or XML data
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.8
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.11
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_LegalCopyright=Jonathan Anderson - The Ark Church 2016
-#AutoIt3Wrapper_Res_SaveSource=y
-#AutoIt3Wrapper_Res_requestedExecutionLevel=requireAdministrator
 #AutoIt3Wrapper_Res_Field=Made By|Jonathan Anderson
+#AutoIt3Wrapper_Add_Constants=n
 #AutoIt3Wrapper_Run_Tidy=y
 #AutoIt3Wrapper_Run_Au3Stripper=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
