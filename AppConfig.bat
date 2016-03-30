@@ -65,11 +65,11 @@ IF /I "%dow%" EQU "Wednesday" (
 rem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Tuesday~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 IF /I "%dow%" EQU "Tuesday" (
-	IF /I "%hr%" EQU "17" ( rem this is Tuesday so Task will be different
+	IF /I "%hr%" EQU "17" ( rem this is Tuesday PM
 		START /WAIT /d "C:\Users\checkin\Google Drive\Scripts" AppLoad.exe 
 	)
 	
-	IF /I "%hr%" EQU "08" ( rem this is Tuesday so Task will be different
+	IF /I "%hr%" EQU "08" ( rem this is Tuesday AM
 		START /WAIT /d "C:\Users\checkin\Google Drive\Scripts" AppLoad.exe 
 	)
 )
@@ -77,7 +77,7 @@ IF /I "%dow%" EQU "Tuesday" (
 rem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Friday~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 IF /I "%dow%" EQU "Friday" (
-	IF /I "%hr%" EQU "18" ( rem this is Tuesday so Task will be different 
+	IF /I "%hr%" EQU "18" ( rem Friday PM
 		START /WAIT /d "C:\Users\checkin\Google Drive\Scripts" AppLoad.exe 
 		START /d "C:\Users\checkin\Google Drive\Scripts" %hr%SS.exe -s
 		TIMEOUT /t 900 /NOBREAK 
