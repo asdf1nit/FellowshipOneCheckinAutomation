@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_Version=Beta
 #AutoIt3Wrapper_Res_Comment=Fellowship One Check- in Automation
 #AutoIt3Wrapper_Res_Description=This program automates Fellowship One Check-in setup with command line input or XML data
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.11
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.14
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_LegalCopyright=Jonathan Anderson - The Ark Church 2016
 #AutoIt3Wrapper_Res_Field=Made By|Jonathan Anderson
@@ -205,20 +205,22 @@ Func WhichWindow() ; Finding what window the program is in Activity, Set Mode, C
 		Local $iIndex = _ArraySearch($tArray, "Next", Default)
 
 		If @error Then; check for Default activity No Default button. This screen has the Best Fit Button
+
 			Local $iIndex = _ArraySearch($tArray, "No Default", Default)
 
-			If @error Then
+			If @error Then; check for actual self entry screen
+
 				Local $iIndex = _ArraySearch($tArray, "Scan your card to check-in", Default)
 
-				If @error Then
+				If @error Then; look for assisted entry screen
 
 					Local $iIndex = _ArraySearch($tArray, "Return All Household Members", Default)
 
-					If @error Then
+					If @error Then ; look if were in the main app settings screen
 
 						Local $iIndex = _ArraySearch($tArray, "Application Setup", Default)
 
-						If @error Then
+						If @error Then ; I couldn't find any screen at all so I'll check for errors if founf Ill exit in that function
 
 							ErrorSearch()
 
@@ -227,23 +229,28 @@ Func WhichWindow() ; Finding what window the program is in Activity, Set Mode, C
 						Else
 							;MsgBox($MB_SYSTEMMODAL, "", "Setup Screen" & $han); for Testing purpose
 							;Need to write function to deal with this screen
+							$setupCompleted = True
 						EndIf
 					Else
 						;MsgBox($MB_SYSTEMMODAL,"","Assist" & $han); for testing purpose
+						; at assisted entry screen
 						$setupCompleted = True
 					EndIf
 				Else
 					;MsgBox($MB_SYSTEMMODAL,"","Card", $han); for testing purpose
+					; at self entry screen
 					$setupCompleted = True
 				EndIf
 			Else
 				;MsgBox($MB_SYSTEMMODAL, "", "No Default"); for testing purpose
+				; at default activity selection screen
 				$nodefault = True
 				$sendcode = False
 				$setmode = False
 			EndIf
 		Else
 			;MsgBox($MB_SYSTEMMODAL, "", "Set mode"); for testing purpose
+			; at set mode screen
 			$setmode = True
 			$sendcode = False
 			$nodefault = False
@@ -258,7 +265,7 @@ Func WhichWindow() ; Finding what window the program is in Activity, Set Mode, C
 
 EndFunc   ;==>WhichWindow
 
-Func ErrorSearch() ; This function will find error windows as they come up then perform some action. to be used in later versions
+Func ErrorSearch() ; This function will find error windows as they come up then perform some action
 
 	; this part is setting up the main windoe handle for a given error, subsequent windows might have a differernt class an need different values nested in IF statements
 	Local $han = WinGetHandle("Error", "remote") ; This is specific to a window having problems with no internet connection
@@ -325,29 +332,25 @@ Func Setup(); This is the main setup logic used
 
 	If $code = "" Or $mode = "" Then
 
-		MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Please Contact the IT Department", 15)
-		Run(@ScriptDir & "\" & $hour & "SS.exe")
+		MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Contact IT or enter the correct code.", 5)
+		;Run(@ScriptDir & "\" & $hour & "SS.exe") ;~~~~~~~~~~~~~~ ADD IT HELP SCREEN HERE~~~~~~~~~~~~~~~~~~~
 		Exit
 
 	Else
 
-
 		While $setupCompleted = False ; The Main section for stepping thru the different screens and making decisions based on theh screen
 
-			WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church", 5)
-			;CheckWindow()
-			ErrorSearch()
-			WhichWindow()
-			; Get Computer Setup Information here
+			ErrorSearch(); look for error after every entry
+			WhichWindow(); look for next window
 
 			If $sendcode = True Then; decide which code
 
 				$CodeCount = $CodeCount + 1;------------set counter and if statement  for error handleing, if code 3 times wrong code look up code again and try inside this loop, else exit with error code--------------
-				If $CodeCount < 4 Then
+				If $CodeCount < 5 Then
 
 					SendCode($code)
 					$sendcode = False
-					Sleep(1000)
+					Sleep(500)
 					;MsgBox($MB_SYSTEMMODAL, "", $CodeCount)
 
 				Else
@@ -391,6 +394,61 @@ Func GetSettings($hour, $comp, $day) ; This will get the code and mode to set fo
 	Local $cNode = "" ; This will be used for the Current Node Selected
 	Local $oXML = ObjCreate("Microsoft.XMLDOM"); Create and XML Object
 	$oXML.load(@ScriptDir & "\eSch.xml")
+
+;~~~~~~~~~~~~~~~~~~~~~~SPECIAL SERVICE SECTION~~~~~~~~~~~~~~~~Look For a Special service and if yes then get settings~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Local $nodeSpecial = $oXML.selectNodes("//Service")
+
+	For $special In $nodeSpecial
+
+		Local $nodeProperty = $special.getAttribute("Special")
+
+		If $nodeProperty = "Yes" Then
+
+			;MsgBox(0,"Special Found", "Node: " & $special)
+			$cNode = $special
+
+;~~~~~~~~~~~~~~~~~~~~Use special node to find computer~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+			Local $nodeComputers = $cNode.childNodes
+			;$count = 0
+			For $nodeComputer In $nodeComputers
+				;$count = $count + 1
+				Local $nodeProperty = $nodeComputer.getAttribute("Station")
+
+				;MsgBox(0, "For Comp Loop", $nodeProperty & "Node comp count is : " & $nodeComputer & @CRLF & "For Count is: " & $count); For Testing
+
+				If @error Then
+					;MsgBox(0,"Error", @exitCode)
+
+				ElseIf $nodeProperty = $comp Then
+					$cNode = $nodeComputer
+					;MsgBox(0, "Comp else", $nodeProperty); For Testing
+
+;~~~~~~~~~~~~~~~~~~~use computer to get the child text~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+					Local $nodeSettings = $cNode.childNodes
+					For $nodeSetting In $nodeSettings
+
+						If $nodeSetting.baseName = "Code" Then
+							$code = $nodeSetting.text
+							;MsgBox(0, "Code If", $nodeSetting.baseName & $code); For Testing
+						ElseIf $nodeSetting.baseName = "Mode" Then
+							$mode = $nodeSetting.text
+							;MsgBox(0, "Mode If", $nodeSetting.baseName & $mode); For Testing
+						Else
+							;MsgBox(0, "Problem", "there was a problem getting information for computer" & $cNode.getAttribute("Station"), 15); For Testing
+						EndIf
+					Next
+
+				EndIf
+
+			Next
+
+		Else
+			;MsgBox(0,"No Special", "Node: " & $special)
+		EndIf
+	Next
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~End of special services sections~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;~~~~~~~~~~~~~~~~~~~~~~ Select the correct service day node~~~~~~~~~~~~~~~~~~~~~~
 	Local $nodeDays = $oXML.selectNodes("//Service")
@@ -438,7 +496,7 @@ Func GetSettings($hour, $comp, $day) ; This will get the code and mode to set fo
 									$mode = $nodeSetting.text
 									;MsgBox(0, "Mode If", $nodeSetting.baseName & $mode); For Testing
 								Else
-									MsgBox(0, "Problem", "there was a problem getting information for computer" & $cNode.getAttribute("Station"), 15); For Testing
+									;MsgBox(0, "Problem", "there was a problem getting information for computer" & $cNode.getAttribute("Station"), 15); For Testing
 								EndIf
 							Next
 
