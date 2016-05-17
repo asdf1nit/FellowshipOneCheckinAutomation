@@ -1636,6 +1636,7 @@ If @error Then
 ErrorSearch()
 MsgBox($MB_SYSTEMMODAL, "", "I Cant find screen Please contact IT department and let them know.", 15)
 Else
+$setupCompleted = True
 EndIf
 Else
 $setupCompleted = True
@@ -1705,20 +1706,18 @@ EndIf
 EndFunc
 Func Setup()
 If $code = "" Or $mode = "" Then
-MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Please Contact the IT Department", 15)
-Run(@ScriptDir & "\" & $hour & "SS.exe")
+MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Contact IT or enter the correct code.", 5)
 Exit
 Else
 While $setupCompleted = False
-WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church", 5)
 ErrorSearch()
 WhichWindow()
 If $sendcode = True Then
 $CodeCount = $CodeCount + 1
-If $CodeCount < 4 Then
+If $CodeCount < 5 Then
 SendCode($code)
 $sendcode = False
-Sleep(1000)
+Sleep(500)
 Else
 MsgBox($MB_SYSTEMMODAL, "", "Invalid Code. Please Contact Jonathan or Nate on chanel 7 and let them Know", 15)
 $setupCompleted = True
@@ -1749,6 +1748,31 @@ Func GetSettings($hour, $comp, $day)
 Local $cNode = ""
 Local $oXML = ObjCreate("Microsoft.XMLDOM")
 $oXML.load(@ScriptDir & "\eSch.xml")
+Local $nodeSpecial = $oXML.selectNodes("//Service")
+For $special In $nodeSpecial
+Local $nodeProperty = $special.getAttribute("Special")
+If $nodeProperty = "Yes" Then
+$cNode = $special
+Local $nodeComputers = $cNode.childNodes
+For $nodeComputer In $nodeComputers
+Local $nodeProperty = $nodeComputer.getAttribute("Station")
+If @error Then
+ElseIf $nodeProperty = $comp Then
+$cNode = $nodeComputer
+Local $nodeSettings = $cNode.childNodes
+For $nodeSetting In $nodeSettings
+If $nodeSetting.baseName = "Code" Then
+$code = $nodeSetting.text
+ElseIf $nodeSetting.baseName = "Mode" Then
+$mode = $nodeSetting.text
+Else
+EndIf
+Next
+EndIf
+Next
+Else
+EndIf
+Next
 Local $nodeDays = $oXML.selectNodes("//Service")
 For $nodeDay In $nodeDays
 Local $nodeProperty = $nodeDay.getAttribute("Day")
@@ -1771,7 +1795,6 @@ $code = $nodeSetting.text
 ElseIf $nodeSetting.baseName = "Mode" Then
 $mode = $nodeSetting.text
 Else
-MsgBox(0, "Problem", "there was a problem getting information for computer" & $cNode.getAttribute("Station"), 15)
 EndIf
 Next
 EndIf
