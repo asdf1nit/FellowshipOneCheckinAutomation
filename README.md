@@ -6,6 +6,6 @@ The application is started with a scheduled task that runs a batch file. The bat
 
  --- edit 05/17/16 ---
  
-Major changes in Sending Activity Code in 1.0.0.30 works much better. Also added email function for reporting, switched to a powershell script for automation triggered by task scheduler before service times, and special screen savers for errors.
+Major changes in Sending Activity Code in 1.0.0.30 works much better. Also added email function for reporting, switched to a powershell script for automation triggered by task scheduler before service times, and special screen savers(blue screen) for errors.
 
 Overall I now have verry few issues with this system. Out of 30 PC's I get maybe 2 error email's per service. Really beats having to go to 30 machines and configure all of them by hand. Most of the problems come from internet issues.
