@@ -2,7 +2,8 @@
 #AutoIt3Wrapper_Icon=ark.ico
 #AutoIt3Wrapper_Res_Comment=Fellowship One Check- in Automation
 #AutoIt3Wrapper_Res_Description=This program automates Fellowship One Check-in setup with command line input or XML data
-#AutoIt3Wrapper_Res_Fileversion=1.0.0.31
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.35
+#AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_LegalCopyright=Jonathan Anderson - The Ark Church 2016
 #AutoIt3Wrapper_Res_Field=Made By|Jonathan Anderson
 #AutoIt3Wrapper_Run_Tidy=y
@@ -16,11 +17,8 @@
 
 	AutoIt Version: 3.3.14.2
 	Author:         Jonathan Anderson
-	Script Function: Automating Fellowship One Check-in on Windows machines
+	Script Function: Automating Fellowship One App on Windows machines
 	Template AutoIt script.
-
-	There are some small changes to be made for your church. Any where you se The Ark Church your Church name should be, or whats defined on the app screen
-	If any information is needed my email is jonathan.andersonATthearkchurchDOTcom
 
 #ce ----------------------------------------------------------------------------
 
@@ -48,9 +46,9 @@ Global $hour = @HOUR ; For code and mode selection in getSettings Function
 Global $day = _DateDayOfWeek(@WDAY); For the day
 Global $errorCount = 0
 Global $setupCount = 0
-Const $F1 = "C:\Fellowship One Check-in 2.6\AppStart.exe"; for CheckWindow function in windows 8 and 10 machines
+Const $F1 = "C:\Fellowship One Check-in 2.6\AppStart.exe"; for CheckWindow function
 Const $F1Updater = "AppStart.exe"
-Const $F1Win7 = "C:\FT\Fellowship One Check-in 2.5\AppStart.exe"; directory in windows 7 machines
+Const $F1Win7 = "C:\FT\Fellowship One Check-in 2.5\AppStart.exe"
 Const $process = "FellowshipTech.Application.Windows.CheckIn.exe"; for CheckProcess function
 
 #Region ;~ This region Contains Send Email Settings and Functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,17 +56,17 @@ Const $process = "FellowshipTech.Application.Windows.CheckIn.exe"; for CheckProc
 Func SendMail($sub, $msg)
 
 ;~ Variable Dec~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Global $SmtpServer = "smtp.gmail.com" ; address for the smtp-server to use - REQUIRED
+	Global $SmtpServer = "smtp.gmail.com" ; address for the smtp-server to use - REQUIRED ---- For this function to work with gmail you have to turn on less secure applications in your gmail settings!!!!
 	Global $FromName = $comp ; name from who the email was sent
-	Global $FromAddress = "youremail.com" ; address from where the mail should come
-	Global $ToAddress = "someemail.com" ;multiple addresses use semicolin seperator, destination address of the email - REQUIRED
+	Global $FromAddress = "name@yourMail.com" ; address from where the mail should come
+	Global $ToAddress = "someMail@mail.com; differentMail@mail.com" ; destination address of the email - REQUIRED
 	Global $Subject = $sub ; subject from the email - can be anything you want it to be
 	Global $Body = $msg ; the messagebody from the mail - can be left blank but then you get a blank mail
 	Global $CcAddress = "" ; address for cc - leave blank if not needed
 	Global $BccAddress = "" ; address for bcc - leave blank if not needed
 	Global $Importance = "High" ; Send message priority: "High", "Normal", "Low"
-	Global $Username = "emailusername.com" ; username for the account used from where the mail gets sent - REQUIRED
-	Global $Password = "yes this is plain text" ; password for the account used from where the mail gets sent - REQUIRED
+	Global $Username = "name@yourMail.com" ; username for the account used from where the mail gets sent - REQUIRED
+	Global $Password = "IKnowNotToSecure" ; password for the account used from where the mail gets sent - REQUIRED
 	Global $IPPort = 465 ; port used for sending the mail
 	Global $ssl = 1 ; enables/disables secure socket layer sending - put to 1 if using httpS
 
@@ -194,7 +192,7 @@ Func Checkprocess() ;checks to see if the FellowShip One App is loaded and if it
 			Run($F1)
 		EndIf
 	Else
-		ProcessClose($process) ; added because its best to just quit the proces because of error's
+		ProcessClose($process) ; added because its best to just quit the proces beczuse of error's
 		ProcessClose($F1Updater)
 		Sleep(1000)
 
@@ -213,7 +211,7 @@ Func Checkprocess() ;checks to see if the FellowShip One App is loaded and if it
 
 EndFunc   ;==>Checkprocess
 
-Func SendCode($activity) ;for sendig the activity code. Must pass the activity variable. rewrite in version 1.0.0.30, needs improvement/restructure got tired but works well
+Func SendCode($activity) ;for sendig the activity code. Must pass the activity variable. Shouldnt be sent More than once. rewrite in version 1.0.0.30
 	Local $sentCode = 0
 	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
 	Local $loop = 0
@@ -308,7 +306,7 @@ Func SendCode($activity) ;for sendig the activity code. Must pass the activity v
 ;~ 	MsgBox($MB_SYSTEMMODAL, "Stats", "Loop count: " & $loop & @CRLF & "Good count: " & $goodCount & @CRLF & "Bad count: " & $badCount & @CRLF & "IDK count: " & $idkCount & @CRLF & "Error Count: " & $errorCount & @CRLF & "Sent Code: " & $sentCode, 15)
 
 	If $process = True And $loop = 4 Then
-;~ 		MsgBox($MB_SYSTEMMODAL, "", "Invalid Code. Please Contact Jonathan or Nate on channel 7 and let them Know", 5)
+		MsgBox($MB_SYSTEMMODAL, "", "Invalid Code. Please Contact Jonathan or Nate on chanel 7 and let them Know", 5)
 		SendMail("Setup Error On: " & $comp, "Invalid Code" & @CRLF & "Time: " & _Now() & @CRLF & "Loop Count: " & $loop & @CRLF & "Times Code Sent to InputBox: " & $sentCode & @CRLF & "At Line #: 296" & @CRLF & "Code: " & $code & @CRLF & "Mode: " & $mode & @CRLF & "Error Msg: " & $errorMsg)
 		Exit (1)
 	EndIf
@@ -528,7 +526,7 @@ Func Setup(); This is the main setup logic used
 
 		SendMail("Setup Error On: " & $comp, "No Code or Mode set" & @CR & "Time: " & _Now() & @CR & "Error Count: " & $errorCount & @CR & "At Line #: 428")
 		MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Contact IT or enter the correct code.", 5)
-;~ 		Run(@ScriptDir & "\" & "Help.exe") ;~~~~~~~~~~~~~~ ADD IT HELP SCREEN HERE~~~~~~~~~~~~~~~~~~~
+		Run(@ScriptDir & "\" & "HelperSS.exe") ;~~~~~~~~~~~~~~ ADD IT HELP SCREEN HERE~~~~~~~~~~~~~~~~~~~
 		Exit (1)
 
 	ElseIf $code = "0" Then
@@ -712,12 +710,16 @@ EndFunc   ;==>GetSettings
 
 If $CmdLine[0] = 0 Then
 
-	;Deal with in between service for manually running program without passing command line code
+;~ 	Following lines are church specific for my church!!!! YOU WILL NEED TO ERASE OR COMPLETELTY CHANGE THIS ACCORDING TO YOUR SERVICE SCHEDULE!
+;~ 	Deal with in between service for manually running program without passing command line code -- HANDY FOR A SHORTCUT ON THE DESK TOP!
 	If $hour = "08" And $day = "Sunday" Then $hour = "07"
-	If $hour = "10" And @MIN < 30 Then $hour = "09"
-	If $hour = "11" Then $hour = "10"
-	if $hour = "19" And $day = "Wednesday" Then $hour = "18"
-	if $hour = "18" And $day = "Tuesday" Then $hour = "17"
+	If $hour < "07" And $day = "Sunday" Then $hour = "05"
+	If $hour = "10" And $day = "Sunday" And @MIN < 30 Then $hour = "09"
+	If $hour = "11" And $day = "Sunday" Then $hour = "10"
+	If $hour = "19" And $day = "Wednesday" Then $hour = "18"
+	If $hour = "16" And $day = "Wednesday" Then $hour = "08"
+	If $hour < "16" And $day = "Tuesday" Then $hour = "08"
+	If $hour > "17" And $day = "Tuesday" Then $hour = "17"
 
 	GetSettings($hour, $comp, $day)
 	;MsgBox(0, "No params", "Nothing exist so check XML")
