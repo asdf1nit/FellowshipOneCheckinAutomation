@@ -239,8 +239,8 @@ Add-Type @"
     $h = (Get-Process $SS.Substring(0,$SS.Length-4)).MainWindowHandle
     [void] [Tricks]::SetForegroundWindow($h)
     sleep -sec 2
-    $h = (Get-Process -id $pid).MainWindowHandle
-    [void] [Tricks]::SetForegroundWindow($h)
+    $h2 = (Get-Process $SS.Substring(0,$SS.Length -4)).Id
+    [void] [Tricks]::SetForegroundWindow($h2)
 }
 
 function Show-Process($Process, [Switch]$Maximize)
@@ -263,7 +263,7 @@ function Show-Process($Process, [Switch]$Maximize)
 Switch ($Day)
 {
         "Sunday"{ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sunday ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            If ($Hour -eq "07"){
+            If ($Hour -ile "08"){
                 Switch ($Computer)
                     {
                         "Loft"{
@@ -347,7 +347,7 @@ Switch ($Day)
         } # Sunday case end
 
         "Tuesday"{ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tuesday ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            If ($Hour -eq "08"){
+            If ($Hour -ile "16"){
                 Switch ($Computer)
                     {
                         default{Start-Setup }
@@ -363,6 +363,14 @@ Switch ($Day)
         } # Tuesday case end
 
         "Wednesday"{ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Wednesday ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            if ($Hour -ile "16"){
+                Switch ($Computer){
+                    default{ Start-Setup}
+            
+            }
+            }
+            
+            
             If ($Hour -eq "17"){
                  Switch ($Computer)
                     {
@@ -424,7 +432,7 @@ Switch ($Day)
             }
         } # Wednesday case end
 
-        "Friday"{#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Friday ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        "Friday" { #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Friday ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             If ($Hour -eq "18"){
                  Switch ($Computer)
                     {
