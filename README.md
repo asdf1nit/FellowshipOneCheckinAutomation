@@ -5,7 +5,7 @@ This is the First version of my automation app. It works on Windows 7/8/10, and 
 
 At my church The application is started with a scheduled task with multiple defined time based triggers that run a powershell script.
 The script calls the automation program and/or other task based on the time and computer.
-It kills windows explorer(reduces problems and increases security for self kiosk), loads screen savers(wallpapers compiled into exe's by irfanview which locks poeple out untill my script finishes), loads an options bar program for quick IT support after en email(another repo) as well as perform other task.
+It kills windows explorer(reduces problems and increases security for self kiosk), loads screen savers(wallpapers compiled into exe's by irfanview which locks poeple out untill my script finishes), loads an options bar program for quick IT support after problems(another repo) as well as perform other task.
 
 Overall I now have very few issues with this system. Out of 30 PC's I get maybe 2 error email's per service. Really beats having to go to 30 machines and configure all of them by hand. Most of the problems come from internet issues.
 
