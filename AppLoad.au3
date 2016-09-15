@@ -1,5 +1,4 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Icon=ark.ico
 #AutoIt3Wrapper_Res_Comment=Fellowship One Check- in Automation
 #AutoIt3Wrapper_Res_Description=This program automates Fellowship One Check-in setup with command line input or XML data
 #AutoIt3Wrapper_Res_Fileversion=1.0.0.35
@@ -46,17 +45,22 @@ Global $hour = @HOUR ; For code and mode selection in getSettings Function
 Global $day = _DateDayOfWeek(@WDAY); For the day
 Global $errorCount = 0
 Global $setupCount = 0
-Const $F1 = "C:\Fellowship One Check-in 2.6\AppStart.exe"; for CheckWindow function
-Const $F1Updater = "AppStart.exe"
-Const $F1Win7 = "C:\FT\Fellowship One Check-in 2.5\AppStart.exe"
+
+;~ Change this to help find your window
+Const $churchName = "The Ark Church" ; used for finding your checkin window this MUST BE CHANGED FOR YOUR CHURCH!
+
+;~ this section must be configured to how F1 is installed on your computer. I've bypassed the updater because it hangs, crashes, gives trouble, and often the actual application never loads. This has been a problem for a while and now its solved
+Const $F1 = "C:\Fellowship One Check-in 2.6\2.6.0.0\FellowshipTech.Application.Windows.CheckIn.exe"; for CheckWindow function
+Const $F1Updater = "AppStart.exe" ; for checking if updater is running
+Const $F1Win7 = "C:\FT\Fellowship One Check-in 2.5\2.5.6.2\FellowshipTech.Application.Windows.CheckIn.exe" ; install directory is different on win 7 than win 10 so specify the install location
 Const $process = "FellowshipTech.Application.Windows.CheckIn.exe"; for CheckProcess function
 
-#Region ;~ This region Contains Send Email Settings and Functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Region ;~ This region Contains Send Email Settings and Functions, YOU MUST CHANGE EMAIL ADDRESSES  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Func SendMail($sub, $msg)
 
 ;~ Variable Dec~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Global $SmtpServer = "smtp.gmail.com" ; address for the smtp-server to use - REQUIRED ---- For this function to work with gmail you have to turn on less secure applications in your gmail settings!!!!
+	Global $SmtpServer = "smtp.gmail.com" ; address for the smtp-server to use - REQUIRED ---- For this function to work with GMAIL you have to turn on less secure applications in your gmail settings!!!!
 	Global $FromName = $comp ; name from who the email was sent
 	Global $FromAddress = "name@yourMail.com" ; address from where the mail should come
 	Global $ToAddress = "someMail@mail.com; differentMail@mail.com" ; destination address of the email - REQUIRED
@@ -147,12 +151,12 @@ EndFunc   ;==>_INetSmtpMailCom
 
 Func CheckWindow() ; Looks at all the readable text in the current window and decides which window it's in so it knows the action to perform.
 
-	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
+	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName)
 
 	For $count = 0 To 5 Step +1
 
 		;MsgBox($MB_SYSTEMMODAL, "", "Loop Count:" & $count); for testing
-		If WinExists("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church") Then
+		If WinExists("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName) Then
 
 			If WinActivate($han, "") Then
 				;MsgBox($MB_SYSTEMMODAL, "", "Exists and active")
@@ -160,13 +164,13 @@ Func CheckWindow() ; Looks at all the readable text in the current window and de
 			Else
 				WinActivate($han, "")
 				ErrorSearch()
-				;WinWaitActive($han, "The Ark Church", 5)
+				;WinWaitActive($han, $churchName, 5)
 				;MsgBox($MB_SYSTEMMODAL, "", "Exists and not active")
 			EndIf
 
 		Else
 			;MsgBox($MB_SYSTEMMODAL, "", "Wait: " & $count, 2)
-			WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church", 5)
+			WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName, 5)
 		EndIf
 
 		If $count = 5 Then
@@ -181,7 +185,7 @@ EndFunc   ;==>CheckWindow
 
 Func Checkprocess() ;checks to see if the FellowShip One App is loaded and if it isnt it loads it.
 
-	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
+	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName)
 
 	If Not ProcessExists($process) And Not ProcessExists($F1Updater) Then
 
@@ -202,8 +206,8 @@ Func Checkprocess() ;checks to see if the FellowShip One App is loaded and if it
 		Else
 			Run($F1)
 			Sleep(1000)
-			WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church", 5)
-			Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
+			WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName, 5)
+			Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName)
 			;MsgBox($MB_SYSTEMMODAL, "", "Not Opening")
 			WinActivate($han, "")
 		EndIf
@@ -213,7 +217,7 @@ EndFunc   ;==>Checkprocess
 
 Func SendCode($activity) ;for sendig the activity code. Must pass the activity variable. Shouldnt be sent More than once. rewrite in version 1.0.0.30
 	Local $sentCode = 0
-	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
+	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName)
 	Local $loop = 0
 	Local $goodCount = 0
 	Local $badCount = 0
@@ -306,7 +310,7 @@ Func SendCode($activity) ;for sendig the activity code. Must pass the activity v
 ;~ 	MsgBox($MB_SYSTEMMODAL, "Stats", "Loop count: " & $loop & @CRLF & "Good count: " & $goodCount & @CRLF & "Bad count: " & $badCount & @CRLF & "IDK count: " & $idkCount & @CRLF & "Error Count: " & $errorCount & @CRLF & "Sent Code: " & $sentCode, 15)
 
 	If $process = True And $loop = 4 Then
-		MsgBox($MB_SYSTEMMODAL, "", "Invalid Code. Please Contact Jonathan or Nate on chanel 7 and let them Know", 5)
+		MsgBox($MB_SYSTEMMODAL, "", "Invalid Code.", 5)
 		SendMail("Setup Error On: " & $comp, "Invalid Code" & @CRLF & "Time: " & _Now() & @CRLF & "Loop Count: " & $loop & @CRLF & "Times Code Sent to InputBox: " & $sentCode & @CRLF & "At Line #: 296" & @CRLF & "Code: " & $code & @CRLF & "Mode: " & $mode & @CRLF & "Error Msg: " & $errorMsg)
 		Exit (1)
 	EndIf
@@ -385,7 +389,7 @@ EndFunc   ;==>DefaultActivityClick
 
 Func WhichWindow() ; Finding what window the program is in Activity, Set Mode, Code, Etc... ------Needs Error Handling! Either inside this function or from the calling actions-------
 
-	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church")
+	Local $han = WinGetHandle("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName)
 	Local $text = WinGetText($han, ""); for getting text to find which window we're in
 	Local $tArray = _StringExplode($text, @LF); for splitting text into an array
 	Local $iIndex = _ArraySearch($tArray, "Activity Code:", Default); for searching the array
@@ -487,7 +491,7 @@ Func ErrorSearch() ; This function will find error windows as they come up then 
 				Checkprocess()
 
 				If $errorCount > 3 Then
-					SendMail("Error Found On: " & $comp, "Connection Error - Application Updater Error Caught" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 392")
+					SendMail("Error Found On: " & $comp, "Connection Error - Application Updater Error Caught" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 493")
 					MsgBox($MB_SYSTEMMODAL, "Error Found", "Error with Fellowship One, Please contact IT", 5)
 					Exit (1)
 				EndIf
@@ -498,7 +502,7 @@ Func ErrorSearch() ; This function will find error windows as they come up then 
 			Checkprocess()
 
 			If $errorCount > 3 Then
-				SendMail("Error Found On: " & $comp, "Connection Error - No Internet? E-Mail?" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 403")
+				SendMail("Error Found On: " & $comp, "Connection Error - No Internet? E-Mail?" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 504")
 				MsgBox($MB_SYSTEMMODAL, "Error Found", "Error with Fellowship One, Please contact IT", 5)
 				Exit (1)
 			EndIf
@@ -511,7 +515,7 @@ Func ErrorSearch() ; This function will find error windows as they come up then 
 		Checkprocess()
 
 		If $errorCount > 3 Then
-			SendMail("Error Found On: " & $comp, "Remote Server error message caught" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 415")
+			SendMail("Error Found On: " & $comp, "Remote Server error message caught" & @CRLF & "Time: " & _Now() & @CRLF & "Error Count: " & $errorCount & @CRLF & "At Line #: 517")
 			MsgBox($MB_SYSTEMMODAL, "Error Found", "Error with Fellowship One, Please contact IT", 5)
 			Exit (1)
 		EndIf; at this point an email should be sent or some lan message to a device
@@ -524,14 +528,14 @@ Func Setup(); This is the main setup logic used
 
 	If $code = "" Or $mode = "" Then
 
-		SendMail("Setup Error On: " & $comp, "No Code or Mode set" & @CR & "Time: " & _Now() & @CR & "Error Count: " & $errorCount & @CR & "At Line #: 428")
+		SendMail("Setup Error On: " & $comp, "No Code or Mode set" & @CR & "Time: " & _Now() & @CR & "Error Count: " & $errorCount & @CR & "At Line #: 529")
 		MsgBox($MB_SYSTEMMODAL, "Error", "No settings for Service. Contact IT or enter the correct code.", 5)
-		Run(@ScriptDir & "\" & "HelperSS.exe") ;~~~~~~~~~~~~~~ ADD IT HELP SCREEN HERE~~~~~~~~~~~~~~~~~~~
-		Exit (1)
+;~ 		Run(@ScriptDir & "\" & "HelperSS.exe") ;~~~~~~~~~~~~~~ ADD AN IT HELP SCREEN HERE~~~~~~~~~~~~~~~~~~~ Moved to powershell error handling
+		Exit (1) ; this shouldn't happen but I'll catch the errorcode in my powershell script and deal with it
 
 	ElseIf $code = "0" Then
 
-		Exit
+		Exit ; this was a planned so no error code on exit, it was specifically set to 0 in XML.
 
 	Else
 
@@ -792,7 +796,7 @@ EndFunc   ;==>chkParam2
 
 Checkprocess(); seeing if app is running if so close and reopen
 
-WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", "The Ark Church", 30); wait for app to become active
+WinWaitActive("[REGEXPCLASS:WindowsForms10.Window.8.app.0.*]", $churchName, 30); wait for app to become active
 
 ErrorSearch()
 
